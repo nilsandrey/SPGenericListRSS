@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package dslVersion="1.0.0.0" 
+        Id="98037e52-996f-4b8d-892d-5b57b392b3e1" 
+        solutionId="98037e52-996f-4b8d-892d-5b57b392b3e1" 
+        xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel" 
+        name="SPGenericListRSS"
+        sharePointProductVersion="15.0">
+</package>
