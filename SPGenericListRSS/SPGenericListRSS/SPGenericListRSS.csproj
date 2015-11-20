@@ -45,16 +45,27 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.SharePoint" />
     <Reference Include="Microsoft.SharePoint.Client.ServerRuntime" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Layouts\SPGenericListRSS\rss.aspx.cs">
+      <DependentUpon>rss.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Layouts\SPGenericListRSS\rss.aspx.designer.cs">
+      <DependentUpon>rss.aspx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="key.snk" />
+    <None Include="Layouts\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{38bed48a-6aed-4f7f-a9cc-d4356f6c79ee}</SharePointProjectItemId>
+    </None>
     <None Include="Package\Package.package">
       <PackageId>{98037e52-996f-4b8d-892d-5b57b392b3e1}</PackageId>
     </None>
@@ -64,6 +75,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Layouts\SPGenericListRSS\rss.aspx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
