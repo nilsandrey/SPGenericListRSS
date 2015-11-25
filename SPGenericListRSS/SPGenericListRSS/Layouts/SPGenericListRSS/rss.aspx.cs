@@ -70,26 +70,32 @@ namespace SPGenericListRSS.Layouts.SPGenericListRSS
             try
             {
                 // Get previous page title and URL
-                SPSecurity.RunWithElevatedPrivileges(delegate()
+                SPSecurity.RunWithElevatedPrivileges(delegate
                 {
-                    var idStr = HttpContext.Current.Request.QueryString["List"];
-                    var idViewStr = HttpContext.Current.Request.QueryString["View"];
-                    var fieldTitle = HttpContext.Current.Request.QueryString["T"];
-                    var fieldAuthor = HttpContext.Current.Request.QueryString["A"];
-                    var fieldDate = HttpContext.Current.Request.QueryString["D"];
-                    var fieldBody = HttpContext.Current.Request.QueryString["B"];
-                    var RelURL = HttpContext.Current.Request.QueryString["U"];
-                    var web = SPContext.Current.Web;
-                    var feed = new RssFeedDto();
-                    if (PopulateFromList(feed, web, idStr, idViewStr, fieldTitle, fieldAuthor, fieldDate, fieldBody, RelURL))
+                    using (SPSite site = new SPSite(SPContext.Current.Web.Url))
                     {
-                        BindData(feed);
-                        Response.AppendHeader("ETag", feed.ETag);
-                        Response.AppendHeader("Last-Modified", feed.LastBuildDate.ToString());
-                        Response.ContentType = "text/xml";
-                        Response.ContentEncoding = Encoding.UTF8;
+                        using (SPWeb web = site.OpenWeb())
+                        {
+                            var idStr = HttpContext.Current.Request.QueryString["List"];
+                            var idViewStr = HttpContext.Current.Request.QueryString["View"];
+                            var fieldTitle = HttpContext.Current.Request.QueryString["T"];
+                            var fieldAuthor = HttpContext.Current.Request.QueryString["A"];
+                            var fieldDate = HttpContext.Current.Request.QueryString["D"];
+                            var fieldBody = HttpContext.Current.Request.QueryString["B"];
+                            var relUrl = HttpContext.Current.Request.QueryString["U"];
+                            var feed = new RssFeedDto();
+                            if (PopulateFromList(feed, web, idStr, idViewStr, fieldTitle, fieldAuthor, fieldDate,
+                                fieldBody,
+                                relUrl))
+                            {
+                                BindData(feed);
+                                Response.AppendHeader("ETag", feed.ETag);
+                                Response.AppendHeader("Last-Modified", feed.LastBuildDate.ToString());
+                                Response.ContentType = "text/xml";
+                                Response.ContentEncoding = Encoding.UTF8;
+                            }
+                        }
                     }
-
                 });
             }
             catch (Exception ex)
