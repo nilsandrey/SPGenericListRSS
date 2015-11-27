@@ -54,7 +54,6 @@
   <ItemGroup>
     <Compile Include="Layouts\SPGenericListRSS\rss.aspx.cs">
       <DependentUpon>rss.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Layouts\SPGenericListRSS\rss.aspx.designer.cs">
       <DependentUpon>rss.aspx.cs</DependentUpon>

@@ -48,8 +48,9 @@ namespace SPGenericListRSS.Layouts.SPGenericListRSS
     }
 
 
-    public partial class rss : LayoutsPageBase
+    public partial class rss : UnsecuredLayoutsPageBase
     {
+        protected override bool AllowAnonymousAccess { get { return true; } }
         private void BindData(RssFeedDto feed)
         {
             litRssLastBuildDate.Text = feed.LastBuildDate.ToString();
